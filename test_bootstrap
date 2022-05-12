@@ -1,4 +1,5 @@
-#the s3 bucket must be changed according to your s3 bucket destination on lines 9 and 10
+#updates serve, installs Apache then starts and enables it
+#the s3 bucket must be changed according to your s3 bucket destination on lines 10 and 11
 
 #!/bin/bash
 yum update -y
