@@ -1,10 +1,12 @@
+#the s3 bucket must be changed according to your s3 bucket destination on lines 9 and 10
+
 #!/bin/bash
 yum update -y
 yum install httpd -y
 systemctl start httpd
 systemctl enable httpd
 cd /var/www/html
-aws s3 cp s3://dctest-luit/names.csv ./
-aws s3 cp s3://dctest-luit/index.txt ./
+aws s3 cp s3://dctest-luit/names.csv ./     
+aws s3 cp s3://dctest-luit/index.txt ./   
 EC2NAME=`cat ./names.csv|sort -R|head -n 1|xargs` 
 sed "s/INSTANCE/$EC2NAME/" index.txt > index.html
