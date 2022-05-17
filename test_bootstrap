@@ -1,5 +1,5 @@
-#updates serve, installs Apache then starts and enables it
-#the s3 bucket must be changed according to your s3 bucket destination on lines 23 and 24
+#updates server, installs Apache then starts and enables it
+#the s3 bucket must be changed according to your s3 bucket destination on lines 24 and 25
 #redhat linux (yum)
 
 #!/bin/bash
@@ -12,8 +12,9 @@ yum install httpd -y
 systemctl start httpd
 systemctl enable httpd
 
-#install net tools and stress test
+#install net tools/extras and stress test (Review before placing)
 yum install net-tools
+amazon-linux-extras install epel -y
 yum install stress
 
 #move to html directory
