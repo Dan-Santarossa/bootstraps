@@ -1,13 +1,21 @@
 #updates serve, installs Apache then starts and enables it
 #the s3 bucket must be changed according to your s3 bucket destination on lines 10 and 11
+#redhat linux
 
 #!/bin/bash
+
+#update server and install apache
 yum update -y
 yum install httpd -y
+
+#start and enable apache
 systemctl start httpd
 systemctl enable httpd
+
+#move to html directory
 cd /var/www/html
-aws s3 cp s3://dctest-luit/names.csv ./     
-aws s3 cp s3://dctest-luit/index.txt ./   
+
+aws s3 cp s3://*bucket_name*/names.csv ./     
+aws s3 cp s3://*bucket_name*/index.txt ./   
 EC2NAME=`cat ./names.csv|sort -R|head -n 1|xargs` 
 sed "s/INSTANCE/$EC2NAME/" index.txt > index.html
